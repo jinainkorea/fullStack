@@ -21,6 +21,13 @@ public class Main {
             }
 
             int cnt = 0;
+            for (String spellWord:spell) {
+                for (int j = 0; j < word.length(); j++) {
+                    if (word.charAt(j) == spellWord.charAt(0)) {
+
+                    }
+                }
+            }
 //            if (word.charAt(i) == spell[j].charAt(0)) {
 //                System.out.println(word.charAt(i)+":"+spell[j].charAt(0));
             if (cnt == spell.length) {
@@ -33,6 +40,7 @@ public class Main {
         //코드 끝
 
         System.out.println(answer);
+        System.out.println("달라졌어");
     }
 }
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
