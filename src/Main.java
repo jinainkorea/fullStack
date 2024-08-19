@@ -5,43 +5,41 @@ import java.util.stream.IntStream;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 public class Main {
     public static void main(String[] args) {
-        String[] spell = {"p", "o", "s"};
-        String[] dic = {"sod", "eocd", "qixm", "adio", "soo"};
-        int answer = 0;
+        Scanner sc = new Scanner(System.in);
+        String input;
 
-        //코드 시작
-        boolean isThere = false;
-        for (String word:dic) {
-            System.out.println(word);
+        // 1단계
+//        while(true) {
+//            try {
+//                input = sc.nextLine();
+//                if (input.equals("종료")) {
+//                    System.out.println("종료합니다.");
+//                    break;
+//                } else {
+//                    System.out.println("유효한 명령어가 존재하지 않습니다.");
+//                }
+//            } catch (Exception e) {
+//                System.out.println("Invalid input");
+//            }
+//        }
 
-            // spell을 모두 사용할 수 있는 길이면 다음 단어로 스킵
-            if(word.length() != spell.length) {
-                System.out.println("안맞어");
-                continue;
-            }
-
-            int cnt = 0;
-            for (String spellWord:spell) {
-                for (int j = 0; j < word.length(); j++) {
-                    if (word.charAt(j) == spellWord.charAt(0)) {
-
-                    }
+        // 2단계
+        while(true) {
+            try {
+                input = sc.nextLine();
+                if (input.equals("등록")) {
+                    System.out.printf("명언: 현재를 사랑하라.\n작가: 작자미상\n1번 명언이 등록되었습니다.\n");
+                } else if (input.equals("종료")) {
+                    System.out.println("종료합니다. ");
+                    break;
+                } else {
+                    System.out.println("유효한 명령어가 존재하지 않습니다.");
                 }
+            } catch (Exception e) {
+                System.out.println("Invalid input");
             }
-//            if (word.charAt(i) == spell[j].charAt(0)) {
-//                System.out.println(word.charAt(i)+":"+spell[j].charAt(0));
-            if (cnt == spell.length) {
-                answer++;
-            } else {
-                System.out.println("안맞어");
-            }
+
         }
-
-        //코드 끝
-
-        System.out.println(answer);
-        System.out.println("달라졌어");
-        System.out.println("달라졌어2");
     }
 }
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
