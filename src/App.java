@@ -1,13 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class App {
     Scanner sc;
-    int num = 0;
-    String[] ws_arr = {
-            "명언: 현재를 사랑하라.\n작가: 작자미상"
-    };
+    List ws_list = new ArrayList();
     App(Scanner sc) {
         this.sc = sc;
     }
@@ -16,14 +14,24 @@ public class App {
     void run() {
         String input;
         System.out.println("== 명언 앱 ==");
+        String[] line = {"명언: ", "작가: "};
+        String content;
+        String author;
         while(true) {
             try {
                 System.out.printf("명령)");
                 input = sc.nextLine().trim();
                 if (input.equals("등록")) {
-                    System.out.println(ws_arr[0]);
-                    System.out.println((num+1)+"번 명언이 등록되었습니다.\n");
-                    this.num++;
+                    System.out.printf(line[0]);
+                    content = sc.nextLine().trim();
+                    System.out.printf(line[1]);
+                    author = sc.nextLine().trim();
+                    ws_list.add((ws_list.size()+1) + " / " + author + " / " + content);
+                    System.out.println((ws_list.size()) + "번 명언이 등록되었습니다.\n");
+                } else if (input.equals("목록")) {
+                    System.out.println("번호 / 작가 / 명언");
+                    System.out.println("----------------------------------------------");
+                    ws_list.stream().forEach(System.out::println);
                 } else if (input.equals("종료")) {
                     System.out.println("종료합니다. ");
                     break;
