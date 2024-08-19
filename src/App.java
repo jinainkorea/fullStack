@@ -1,7 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
     Scanner sc;
+    int num = 0;
+    String[] ws_arr = {
+            "명언: 현재를 사랑하라.\n작가: 작자미상"
+    };
     App(Scanner sc) {
         this.sc = sc;
     }
@@ -11,9 +17,12 @@ public class App {
         String input;
         while(true) {
             try {
-                input = sc.nextLine();
+                System.out.printf("명령)");
+                input = sc.nextLine().trim();
                 if (input.equals("등록")) {
-                    System.out.printf("명언: 현재를 사랑하라.\n작가: 작자미상\n1번 명언이 등록되었습니다.\n");
+                    System.out.println(ws_arr[0]);
+                    System.out.println((num+1)+"번 명언이 등록되었습니다.");
+                    this.num++;
                 } else if (input.equals("종료")) {
                     System.out.println("종료합니다. ");
                     break;
