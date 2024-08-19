@@ -15,13 +15,14 @@ public class App {
     // 2단계
     void run() {
         String input;
+        System.out.println("== 명언 앱 ==");
         while(true) {
             try {
                 System.out.printf("명령)");
                 input = sc.nextLine().trim();
                 if (input.equals("등록")) {
                     System.out.println(ws_arr[0]);
-                    System.out.println((num+1)+"번 명언이 등록되었습니다.");
+                    System.out.println((num+1)+"번 명언이 등록되었습니다.\n");
                     this.num++;
                 } else if (input.equals("종료")) {
                     System.out.println("종료합니다. ");
