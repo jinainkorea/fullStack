@@ -41,6 +41,7 @@ public class Main {
 
         System.out.println(answer);
         System.out.println("달라졌어");
+        System.out.println("달라졌어2");
     }
 }
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
