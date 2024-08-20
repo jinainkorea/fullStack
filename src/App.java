@@ -61,27 +61,26 @@ public class App {
 
                 for (int i = 0; i < list.size(); i++) {
                     Article article = (Article) list.get(i);
-                    if (order.equals("삭제")) {
-                        if (article.getId() == id) {
+                    if (article.getId() == id) {
+                        if (order.equals("삭제")) {
                             list.remove(i);
                             System.out.println(article.getId() + "번 게시물이 삭제되었습니다.\n");
-                        }
-                    } else if (order.equals("수정")) {
-
+                        } else if (order.equals("수정")) {
                             if (article.getId() == id) {
                                 System.out.println("제목(기존) : " + article.getTitle());
                                 System.out.printf("제목2 : ");
-                                String new_title= sc.nextLine();
+                                String new_title = sc.nextLine();
                                 System.out.println("내용(기존) : " + article.getContent());
                                 System.out.printf("내용2 : ");
-                                String new_content= sc.nextLine();
+                                String new_content = sc.nextLine();
                                 Article article2 = new Article(id, new_title, new_content);
                                 list.remove(i);
                                 list.add(i, article2);
                                 System.out.println(article.getId() + "번 게시물 수정되었습니다. \n");
                             }
-                    } else {
-                        System.out.println("유효한 명령어가 아닙니다.");
+                        } else {
+                            System.out.println("유효한 명령어가 아닙니다.");
+                        }
                     }
                 }
             } else {
