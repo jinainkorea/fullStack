@@ -37,7 +37,12 @@ public class App {
                 int id;
 
                 //----------예외처리------------//
-                //예외1: ?뒤에 입력된 파라미터가 없을 때
+                //예외1: 파라미터가 필요한 명령어가 맞는지 확인
+                if (!(order.equals("삭제")||order.equals("수정"))) {
+                    System.out.println("파라미터가 필요한 명령어가 아닙니다.");
+                    continue;
+                }
+                //예외2: ?뒤에 입력된 파라미터가 없을 때
                 try {
                     url_request = input.split("\\?")[1].trim();
                 } catch (ArrayIndexOutOfBoundsException e) {
@@ -45,9 +50,9 @@ public class App {
                     continue;
                 }
 
-                //예외2: 입력된 파라미터가 옯바른지
+                //예외3: 입력된 파라미터가 옯바른지
                 if (url_request.split("=")[0].equals("id")) {
-                    //예외2-1: 입력된 파라미터가 id인 경우 값이 정수인지
+                    //예외3-1: 입력된 파라미터가 id인 경우 값이 정수인지
                     try {
                         id = Integer.parseInt(url_request.split("=")[1].trim());
                     } catch (Exception e) {
@@ -66,20 +71,16 @@ public class App {
                             list.remove(i);
                             System.out.println(article.getId() + "번 게시물이 삭제되었습니다.\n");
                         } else if (order.equals("수정")) {
-                            if (article.getId() == id) {
-                                System.out.println("제목(기존) : " + article.getTitle());
-                                System.out.printf("제목2 : ");
-                                String new_title = sc.nextLine();
-                                System.out.println("내용(기존) : " + article.getContent());
-                                System.out.printf("내용2 : ");
-                                String new_content = sc.nextLine();
-                                Article article2 = new Article(id, new_title, new_content);
-                                list.remove(i);
-                                list.add(i, article2);
-                                System.out.println(article.getId() + "번 게시물 수정되었습니다. \n");
-                            }
-                        } else {
-                            System.out.println("유효한 명령어가 아닙니다.");
+                            System.out.println("제목(기존) : " + article.getTitle());
+                            System.out.printf("제목2 : ");
+                            String new_title = sc.nextLine();
+                            System.out.println("내용(기존) : " + article.getContent());
+                            System.out.printf("내용2 : ");
+                            String new_content = sc.nextLine();
+                            Article article2 = new Article(id, new_title, new_content);
+                            list.remove(i);
+                            list.add(i, article2);
+                            System.out.println(article.getId() + "번 게시물 수정되었습니다. \n");
                         }
                     }
                 }
