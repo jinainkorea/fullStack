@@ -33,41 +33,56 @@ public class App {
                 System.out.println("\n");
             } else if (input.contains("?")) {
                 String order = input.split("\\?")[0].trim();
-                if (order.equals("삭제")) {
-                    String url_request;
+                String url_request;
+                int id;
+
+                //----------예외처리------------//
+                //예외1: ?뒤에 입력된 파라미터가 없을 때
+                try {
+                    url_request = input.split("\\?")[1].trim();
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("입력된 파라미터가 없습니다.");
+                    continue;
+                }
+
+                //예외2: 입력된 파라미터가 옯바른지
+                if (url_request.split("=")[0].equals("id")) {
+                    //예외2-1: 입력된 파라미터가 id인 경우 값이 정수인지
                     try {
-                        url_request = input.split("\\?")[1].trim();
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        System.out.println("입력된 파라미터가 없습니다.");
-                        continue;
-                    }
-                    if (url_request.split("=")[0].equals("id")) {
-                        int id;
-                        try {
-                            id = Integer.parseInt(url_request.split("=")[1].trim());
-                        } catch (Exception e) {
-                            System.out.println("입력된 id값이 정수가 아닙니다.");
-                            continue;
-                        }
-//                        try {
-//                            list.remove(id - 1);
-//                            System.out.println(id + "번 게시물이 삭제되었습니다.\n");
-//                        } catch (Exception e) {
-//                            System.out.println(id + "번 게시물이 존재하지 않습니다.\n");
-//                        }
-                        for (int i = 0; i < list.size(); i++) {
-                            Article article = (Article) list.get(i);
-                            if (article.getId() == id) {
-                                list.remove(i);
-                                System.out.println(article.getId() + "번 게시물이 삭제되었습니다.\n");
-                            }
-                        }
-                    } else {
-                        System.out.println("삭제 명령어에 대한 올바른 파라미터가 아닙니다.");
+                        id = Integer.parseInt(url_request.split("=")[1].trim());
+                    } catch (Exception e) {
+                        System.out.println("입력된 id값이 정수가 아닙니다.");
                         continue;
                     }
                 } else {
-                    System.out.println("유효한 명령어가 아닙니다.");
+                    System.out.println("삭제 명령어에 대한 올바른 파라미터가 아닙니다.");
+                    continue;
+                }
+
+                for (int i = 0; i < list.size(); i++) {
+                    Article article = (Article) list.get(i);
+                    if (order.equals("삭제")) {
+                        if (article.getId() == id) {
+                            list.remove(i);
+                            System.out.println(article.getId() + "번 게시물이 삭제되었습니다.\n");
+                        }
+                    } else if (order.equals("수정")) {
+
+                            if (article.getId() == id) {
+                                System.out.println("제목(기존) : " + article.getTitle());
+                                System.out.printf("제목2 : ");
+                                String new_title= sc.nextLine();
+                                System.out.println("내용(기존) : " + article.getContent());
+                                System.out.printf("내용2 : ");
+                                String new_content= sc.nextLine();
+                                Article article2 = new Article(id, new_title, new_content);
+                                list.remove(i);
+                                list.add(i, article2);
+                                System.out.println(article.getId() + "번 게시물 수정되었습니다. \n");
+                            }
+                    } else {
+                        System.out.println("유효한 명령어가 아닙니다.");
+                    }
                 }
             } else {
                 System.out.println("유효한 명령어가 아닙니다.");
