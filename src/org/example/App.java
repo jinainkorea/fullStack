@@ -1,10 +1,11 @@
+package org.example;
 
 import java.util.*;
 public class App {
     Scanner sc;
     List list = new ArrayList();
-    App(Scanner sc) {
-        this.sc = sc;
+    App() {
+        sc = Container.getSc();
     }
 
     public void run() {

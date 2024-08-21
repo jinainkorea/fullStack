@@ -1,3 +1,5 @@
+package org.example;
+
 public class Article {
     private int id;
     private String content;
