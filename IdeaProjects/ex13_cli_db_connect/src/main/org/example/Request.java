@@ -3,6 +3,7 @@ package main.org.example;
 import java.util.HashMap;
 import java.util.Map;
 
+//요청처리 클래스
 public class Request {
     private String actionCode;
     private Map<String, String> params = new HashMap<>();
@@ -15,11 +16,10 @@ public class Request {
 
         if (commandList.length == 1) return;
 
-
         String[] paramsList = commandList[1].split("&");
 
         for (String paramsRow: paramsList) {
-            String[] paramsStr = commandList[1].split("=", 2);
+            String[] paramsStr = paramsRow.split("=", 2);
             String key = paramsStr[0];
             String value = paramsStr[1];
             params.put(key, value);
